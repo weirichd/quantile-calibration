@@ -4,6 +4,9 @@ import numpy as np
 from scipy.optimize import minimize
 
 class QuantileCalibrator(BaseEstimator, TransformerMixin, RegressorMixin):
+    """
+    A
+    """
 
     def __init__(self, quantile=10, isotonic_fit=True, isotonic_lambda=1):
         """
@@ -31,7 +34,6 @@ class QuantileCalibrator(BaseEstimator, TransformerMixin, RegressorMixin):
         D3_y_fit = np.diff(np.diff(np.diff(y_fit)))
 
         return np.inner(y - y_fit, y - y_fit) + lamb * np.inner(D3_y_fit, D3_y_fit)
-
 
     def _isotonic_fit(self, X):
         cons = ({'type': 'ineq', 'fun': lambda x: np.diff(x)})
